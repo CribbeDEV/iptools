@@ -12,7 +12,7 @@ pub struct SubnetInfo {
     pub subnet_mask: String,
 }
 
-fn print_info(e: String, c: Color) {
+pub fn print_info(e: String, c: Color) {
     match execute!(
         stdout(),
         SetForegroundColor(c),

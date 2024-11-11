@@ -1,7 +1,6 @@
 use std::net::Ipv4Addr;
 use cidr::Ipv4Cidr;
 
-// Get information about a subnet
 pub fn calculate_subnet_info(ip_cidr: &str) -> Result<super::SubnetInfo, &'static str> {
     let parts: Vec<&str> = ip_cidr.split('/').collect();
     if parts.len() != 2 {
@@ -55,4 +54,10 @@ pub fn cidr_info(c: u8) {
     let wildcard_mask: [u8; 4] = mask.octets().map(|octet| !octet);
     println!("\nMask: {}", mask);
     println!("Wildcard Mask: {}.{}.{}.{}\n", wildcard_mask[0], wildcard_mask[1], wildcard_mask[2], wildcard_mask[3]);
+}
+
+pub fn subnet_to_wildcard(subnet: &str) {
+    let subnet = subnet.parse::<Ipv4Addr>().unwrap();
+    let wildcard_mask: [u8; 4] = subnet.octets().map(|octet| !octet);
+    println!("\nWildcard Mask: {}.{}.{}.{}\n", wildcard_mask[0], wildcard_mask[1], wildcard_mask[2], wildcard_mask[3]);
 }
