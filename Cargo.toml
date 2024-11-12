@@ -7,3 +7,4 @@ edition = "2021"
 clap = { version = "4.5.20", features = ["derive"] }
 cidr = "0.3.0"
 crossterm = "0.28.1"
+network-interface = "2.0.0"

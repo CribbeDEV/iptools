@@ -25,6 +25,17 @@ struct Args {
         value_name = "x.x.x.x"
     )]
     subnet_to_wildcard: String,
+    
+    #[arg(
+        short, 
+        default_value_t = String::from("N/A"), 
+        help = "Convert wildcard mask to subnet",
+        value_name = "x.x.x.x"
+    )]
+    wildcard_to_subnet: String,
+
+    #[arg(short, long, default_value_t = false, help = "List network adapters")]
+    list_adapters: bool,
 }
 
 fn main() {
@@ -45,5 +56,13 @@ fn main() {
 
     if args.subnet_to_wildcard != "N/A" {
         subnet_to_wildcard(&args.subnet_to_wildcard);
+    }
+
+    if args.wildcard_to_subnet != "N/A" {
+        wildcard_to_subnet(&args.wildcard_to_subnet);
+    }
+
+    if args.list_adapters {
+        list_adapters();
     }
 }
